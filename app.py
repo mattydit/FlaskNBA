@@ -1,7 +1,8 @@
-from flask import Flask
+from flask import Flask, jsonify
 import urllib.request, json, datetime
 
 app = Flask(__name__)
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 class Schedule:
 
@@ -14,6 +15,9 @@ class Schedule:
 
     def __str__(self):
         return str(self.__class__) + ': ' + str(self.__dict__)
+
+    # def get_dict(self, item):
+    #     return self.__dict__[item]
 
 @app.route('/')
 def get_games():
@@ -37,10 +41,9 @@ def get_games():
                 if date == datenow:
                     game = Schedule(gid, date, time, visitor, home)
                     #print(game.gid, game.date, game.time, game.visitor, game.home)
-                    gamesList.append(game)
+                    gamesList.append(game.__dict__)
 
-    # for x in gamesList:
-    #     print(x.__dict__)
+    return jsonify(gamesList)
 
 if __name__ == '__main__':
     app.run()
