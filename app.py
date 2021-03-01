@@ -39,8 +39,10 @@ def get_games():
                 time = j['utctm']
                 visitorName = j['v']['tn']
                 visitorCity = j['v']['tc']
+                visitorScore = j['v']['s']
                 homeName = j['h']['tn']
                 homeCity = j['h']['tc']
+                homeScore = j['h']['s']
 
                 if date == datenow:
                     game = Schedule(gid, date, time, visitorName, visitorCity, homeName, homeCity)
