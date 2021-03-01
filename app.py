@@ -6,12 +6,14 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 class Schedule:
 
-    def __init__(self, gid, date, time, visitor, home):
+    def __init__(self, gid, date, time, visitorName, visitorCity, homeName, homeCity):
         self.gid = gid
         self.date = date
         self.time = time
-        self.visitor = visitor
-        self.home = home
+        self.visitorName = visitorName
+        self.visitorCity = visitorCity
+        self.homeName = homeName
+        self.homeCity = homeCity
 
     def __str__(self):
         return str(self.__class__) + ': ' + str(self.__dict__)
@@ -35,11 +37,13 @@ def get_games():
                 gid = j['gid']
                 date = j['gdte']
                 time = j['utctm']
-                visitor = j['v']['tn']
-                home = j['h']['tn']
+                visitorName = j['v']['tn']
+                visitorCity = j['v']['tc']
+                homeName = j['h']['tn']
+                homeCity = j['h']['tc']
 
                 if date == datenow:
-                    game = Schedule(gid, date, time, visitor, home)
+                    game = Schedule(gid, date, time, visitorName, visitorCity, homeName, homeCity)
                     #print(game.gid, game.date, game.time, game.visitor, game.home)
                     gamesList.append(game.__dict__)
 
