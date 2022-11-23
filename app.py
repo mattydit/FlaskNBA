@@ -25,7 +25,7 @@ class Schedule:
 
 @app.route('/')
 def get_games():
-    with urllib.request.urlopen("http://data.nba.com/data/10s/v2015/json/mobile_teams/nba/2020/league/00_full_schedule.json") as url:
+    with urllib.request.urlopen("https://data.nba.com/data/10s/v2015/json/mobile_teams/nba/2022/league/00_full_schedule.json") as url:
         data = json.load(url)
 
         datenow = str(datetime.date.today())
