@@ -1,4 +1,4 @@
-FROM python:3.9-alpine
+FROM python:3.12-alpine
 COPY . /flaskNBA
 WORKDIR /flaskNBA
 RUN pip install -r requirements.txt

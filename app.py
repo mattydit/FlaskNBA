@@ -3,7 +3,8 @@ import urllib.request, json, datetime
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
-nbaURL = "https://data.nba.com/data/10s/v2015/json/mobile_teams/nba/2024/league/00_full_schedule.json"
+# nbaURL = "https://data.nba.com/data/10s/v2015/json/mobile_teams/nba/2025/league/00_full_schedule.json"
+nbaURL = "./00_full_schedule.json"
 
 class Schedule:
 
@@ -26,8 +27,9 @@ class Schedule:
 
 @app.route('/')
 def get_games():
-    with urllib.request.urlopen(nbaURL) as url:
-        data = json.load(url)
+    # with urllib.request.urlopen(nbaURL) as url:
+    with open(nbaURL, 'r') as file:
+        data = json.load(file)
 
         datenow = str(datetime.date.today())
         gamesList = []
